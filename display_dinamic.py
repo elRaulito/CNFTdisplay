@@ -32,10 +32,14 @@ def get_Images(address):
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     response=json.loads(response.text)
+    stake_address=response['stake_address']#this line is new
     data = {}
     counter=0
+    url='https://cardano-mainnet.blockfrost.io/api/v0/accounts/'+stake_address+'/addresses/assets'#new line
+    response = requests.request("GET", url, headers=headers, data=payload)#new line
+    response=json.loads(response.text)#new line
     try:
-        for nft in response['amount']:
+        for nft in response:#line changed
             if "lovelace" not in nft['unit']:
                 counter=counter+1
                 if counter>limit:
