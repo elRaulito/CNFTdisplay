@@ -15,6 +15,8 @@ You don't know what this is? No problem, install git from here https://git-scm.c
 We will need two libraries in order to use our display
 
 `pip install PyQt5`
+
+
 `pip install PyQtWebEngine`
 
 ## Linking to your wallet
