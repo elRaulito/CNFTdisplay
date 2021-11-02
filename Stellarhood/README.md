@@ -1,5 +1,5 @@
-# THE REFRESH
-The refresh is an onchain project where the content changes after every refresh, this code will display the content in a full screen window and will refresh and change NFT every second (this value can be edited), in this way you will be able to show your NFTs and see all of them
+# StellarHood
+Stellar Hood NFT is a fully interactive Cardano NFT! Click, grab, zoom and rotate your solar system. Select celestial objects to get detailed information.
 
 
 # Requisites
@@ -21,8 +21,8 @@ We will need two libraries in order to use our display
 
 ## Linking to your wallet
 
-Open the refresh_display.py with your fav text editor (notebook, atom, nano) and edit the owner address
+Open the stellarhood_display.py with your fav text editor (notebook, atom, nano) and edit the owner address
 
 # START
 
-click on the refresh_display.py file and it will start to load the nfts, after few seconds it will showcase the nfts
+click on the stellarhood_display.py file and it will start to load the nfts, after few seconds it will showcase the nfts
