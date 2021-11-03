@@ -7,9 +7,15 @@ import time
 import requests
 import json
 import random
+import base64
+def stringToBase64(s):
+    return base64.b64encode(s.encode('utf-8'))
+
+def base64ToString(b):
+    return base64.b64decode(b).decode('utf-8')
 limit=50 #how many nfts to load?
 #what is the address?
-owner="addr1q9yuy9tdge82h2lssu6kmykx5x4t8aqazscwahetl0kt64jz5jepupj25990gfpg59kg9q0su9uxyxr8n5ra03d479hskp3723"
+owner="addr1qykmz6aem0wnq0q6p8wuygxca4tm39tlqj9623dderklhr2w2tz6vrnuqucqac95f0actnvr23hnj7xrsp4z6ndnz3ws7jzca2"
 
 
 html="""
@@ -23,7 +29,7 @@ html="""
 <body>
   <div style="text-align:center">
 <iframe id="nft-file-0" marginwidth="0" marginheight="0" allow="geolocation;magnetometer;gyroscope;accelerometer" sandbox="allow-scripts" src="NFT" style="width: 100%; height: 100%; border: 0px; padding: 0px; margin: 0px; overflow: hidden;"></iframe>
-<div id="over">NAME</div>
+<div id="over" style="color:white">NAME</div>
 </div>
 </body>
 </html>
@@ -31,8 +37,7 @@ html="""
 """
 
 
-counter=0
-def get_Refresh(address):
+def get_Awoken(address):
 
     url = "https://cardano-mainnet.blockfrost.io/api/v0/addresses/"+address
     payload={}
@@ -56,7 +61,8 @@ def get_Refresh(address):
         print(total)
     try:
         for nft in total:#line changed
-            if "lovelace" not in nft['unit'] and "adc5716393953403109c335e68c0384238fd19653e960e03afa1fb1f" in nft['unit']:
+            print(nft)
+            if "lovelace" not in nft['unit'] and "95c248e17f0fc35be4d2a7d186a84cdcda5b99d7ad2799ebe98a9865" in nft['unit']:
                 counter=counter+1
                 if counter>limit:
                     continue
@@ -89,7 +95,7 @@ def get_Refresh(address):
 array={}
 
 
-array=get_Refresh(owner)
+array=get_Awoken(owner)
 
 
 def job():
@@ -109,11 +115,13 @@ web.showFullScreen()
 nft=random.choice(list(array.values()))
 src=nft['html']
 name=nft['name']
+print(name)
 page=html.replace("NFT",src)
 page=page.replace("NAME",name)
 web.setHtml(page)
+print(page)
 web.show()
-timer = QtCore.QTimer(interval=1*1000)
+timer = QtCore.QTimer(interval=2*1000)
 timer.timeout.connect(job)
 timer.start()
 sys.exit(app.exec_())
